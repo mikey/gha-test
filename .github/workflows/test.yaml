@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: [ actions/checkout@v3, actions/cache@v3 ]
     - run: ./touch 1
-    - with:
+    with:
       path: file-1
       key: test-${{ github.run_id }}
       restore-keys: test-
@@ -20,9 +20,9 @@ jobs:
   build2:
     needs: [build1]
     runs-on: ubuntu-latest
-    steps:
-    - uses: [ actions/checkout@v3, actions/cache@v3 ]
-    - with:
+    with:
       path: file-1
       key: test-${{ github.run_id }}
+    steps:
+    - uses: [ actions/checkout@v3, actions/cache@v3 ]
     - run: ./touch 2

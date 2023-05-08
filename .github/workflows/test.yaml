@@ -3,26 +3,26 @@ name: 'test'
 on:
   push:
   pull_request:
-  schedule:
-    - cron: '0 0 * * 5'
 
 jobs:
   build1:
     runs-on: ubuntu-latest
     steps:
-    - uses: [ actions/checkout@v3, actions/cache@v3 ]
+    - uses: actions/checkout@v3
     - run: ./touch 1
     with:
-      path: file-1
-      key: test-${{ github.run_id }}
-      restore-keys: test-
+    - uses: actions/cache@v3
+    - path: file-1
+    - key: test-${{ github.run_id }}
+    - restore-keys: test-
 
   build2:
     needs: [build1]
     runs-on: ubuntu-latest
     with:
-      path: file-1
-      key: test-${{ github.run_id }}
+    - uses: actions/cache@v3
+    - path: file-1
+    - key: test-${{ github.run_id }}
     steps:
-    - uses: [ actions/checkout@v3, actions/cache@v3 ]
+    - uses: actions/checkout@v3
     - run: ./touch 2

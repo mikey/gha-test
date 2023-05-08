@@ -12,11 +12,11 @@ jobs:
     - name: Touch 1
       run: ./touch 1
 
-    - name: Cache Write
+    - name: Cache Write 1
       uses: actions/cache@v3
       with:
         path: file-1
-        key: test-${{ github.run_id }}
+        key: test1-${{ github.run_id }}
         restore-keys: test-
 
   build2:
@@ -25,28 +25,32 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Cache Read
+    - name: Cache Read 1
       uses: actions/cache@v3
       with:
         path: file-1
-        key: test-${{ github.run_id }}
+        key: test1-${{ github.run_id }}
 
     - name: Touch 2
       run: ./touch 2
 
-  build2a:
-    needs: [build1]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: Touch 2
-      run: ./touch 2
-
+    - name: Cache Write 2
+      uses: actions/cache@v3
+      with:
+        path: file-*
+        key: test2-${{ github.run_id }}
+        restore-keys: test-
 
   build3:
     needs: [build2]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
+
+    - name: Cache Read 2
+      uses: actions/cache@v3
+      with:
+        key: test2-${{ github.run_id }}
+
     - name: Touch 3
       run: ./touch 3

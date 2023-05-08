@@ -1,0 +1,27 @@
+name: 'test'
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 0 * * 5'
+
+jobs:
+  build1:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - run: ./touch 1
+
+  build2:
+    needs: [build1]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - run: ./touch 2
+
+    - name: Artifact 2
+      uses: actions/upload-artifact@v3
+      with:
+        name: file-2
+        path: 2

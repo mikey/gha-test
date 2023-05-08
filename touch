@@ -1,0 +1,14 @@
+#!/bin/sh
+
+N=$1
+NMINUS1=$(( $N - 1))
+
+for i in $(seq $NMINUS1); do
+    f="file-$i"
+    if [ ! -e $f ] ; then
+       echo "ERROR: can't find $f"
+       exit 1
+    fi
+done
+
+touch file-$N

@@ -14,9 +14,10 @@ jobs:
 
     - name: Cache Write
       uses: actions/cache@v3
-      path: file-1
-      key: test-${{ github.run_id }}
-      restore-keys: test-
+      with:
+        path: file-1
+        key: test-${{ github.run_id }}
+        restore-keys: test-
 
   build2:
     needs: [build1]
@@ -26,8 +27,9 @@ jobs:
 
     - name: Cache Read
       uses: actions/cache@v3
-      path: file-1
-      key: test-${{ github.run_id }}
+      with:
+        path: file-1
+        key: test-${{ github.run_id }}
 
     - name: Touch 2
       run: ./touch 2

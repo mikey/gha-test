@@ -1,8 +1,7 @@
-name: 'test'
+name: Testing Github Actions
 
 on:
   push:
-  pull_request:
 
 jobs:
   build1:
@@ -10,7 +9,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name Touch 1
+    - name: Touch 1
       run: ./touch 1
 
     - name: Cache Write

@@ -33,3 +33,20 @@ jobs:
 
     - name: Touch 2
       run: ./touch 2
+
+  build2a:
+    needs: [build1]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Touch 2
+      run: ./touch 2
+
+
+  build3:
+    needs: [build2]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Touch 3
+      run: ./touch 3

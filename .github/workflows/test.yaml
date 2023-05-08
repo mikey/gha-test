@@ -10,18 +10,19 @@ jobs:
   build1:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: [ actions/checkout@v3, actions/cache@v3 ]
     - run: ./touch 1
+    - with:
+      path: file-1
+      key: test-${{ github.run_id }}
+      restore-keys: test-
 
   build2:
     needs: [build1]
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: [ actions/checkout@v3, actions/cache@v3 ]
+    - with:
+      path: file-1
+      key: test-${{ github.run_id }}
     - run: ./touch 2
-
-    - name: Artifact 2
-      uses: actions/upload-artifact@v3
-      with:
-        name: file-2
-        path: 2

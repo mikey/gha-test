@@ -11,4 +11,4 @@ for i in $(seq $NMINUS1); do
     fi
 done
 
-touch file-$N
+echo $N > file-$N

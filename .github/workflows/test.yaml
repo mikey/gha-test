@@ -29,5 +29,5 @@ jobs:
       path: file-1
       key: test-${{ github.run_id }}
 
-    - name Touch 2
+    - name: Touch 2
       run: ./touch 2

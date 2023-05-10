@@ -9,6 +9,9 @@ for i in $(seq $NMINUS1); do
        echo "ERROR: can't find $f"
        exit 1
     fi
+    cat $f > file-$N.tmp
 done
 
-echo $N > file-$N
+echo "$N: $(date)" >> file-$N.tmp
+
+mv -f file-$N.tmp file-$N

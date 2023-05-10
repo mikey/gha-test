@@ -1,4 +1,4 @@
-name: Testing Github Actions
+name: test
 
 
 on:

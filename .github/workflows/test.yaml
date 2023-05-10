@@ -22,7 +22,7 @@ jobs:
       with:
         name: build-1
         path: |
-          output/foo
+          output/foo/
           output/file-1
 
     - name: Get artifacts

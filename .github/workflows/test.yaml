@@ -4,7 +4,7 @@ on:
   push:
 
 jobs:
-  build1:
+  builds:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -12,46 +12,25 @@ jobs:
     - name: Touch 1
       run: ./touch 1
 
-    - name: Cache Write 1
-      uses: actions/cache@v3
+    - name: Get build-1
+      if: github.ref_name == 'test'
+      continue-on-error: true
+      uses: dawidd6/action-download-artifact@v2
       with:
-        path: file-1
-        key: test1-${{ github.run_id }}
-        restore-keys: test-
+        workflow: test.yml
+        workflow_conclusion: success
+        branch: test
+        name: build-1
 
-  build2:
-    needs: [build1]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-
-    - name: Cache Read 1
-      uses: actions/cache@v3
+    - name: Archive artifacts
+      uses: actions/upload-artifact@v3
       with:
-        path: file-1
-        key: test1-${{ github.run_id }}
+        name: build-1
+        path: |
+          file-1
 
     - name: Touch 2
       run: ./touch 2
-
-    - name: Cache Write 2
-      uses: actions/cache@v3
-      with:
-        path: file-*
-        key: test2-${{ github.run_id }}
-        restore-keys: test-
-
-  build3:
-    needs: [build2]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-
-    - name: Cache Read 2
-      uses: actions/cache@v3
-      with:
-        path: file-*
-        key: test2-${{ github.run_id }}
 
     - name: Touch 3
       run: ./touch 3

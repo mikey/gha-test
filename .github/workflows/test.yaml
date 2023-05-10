@@ -14,6 +14,7 @@ jobs:
       run: |
         ./touch 1
         mkdir -p output/foo/baa
+        touch output/foo/baa/flippy
 
     - name: Archive artifacts
       if: github.ref_name != 'test'

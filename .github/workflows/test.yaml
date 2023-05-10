@@ -27,6 +27,9 @@ jobs:
       uses: dawidd6/action-download-artifact@v2
       with:
         branch: main
+
+    - name: Move build-1
+      if: github.ref_name == 'test'
       run: mv build-1/* .
 
     - name: Touch 2

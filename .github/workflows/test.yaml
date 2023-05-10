@@ -19,7 +19,7 @@ jobs:
       with:
         name: build-1
         path: |
-          file-1
+          output/
 
     - name: Get build-1
       if: github.ref_name == 'test'

@@ -3,8 +3,10 @@
 N=$1
 NMINUS1=$(( $N - 1))
 
+mkdir -p output
+
 for i in $(seq $NMINUS1); do
-    f="file-$i"
+    f="output/file-$i"
     if [ ! -e $f ] ; then
        echo "ERROR: can't find $f"
        exit 1
@@ -14,4 +16,4 @@ done
 
 echo "$N: $(date)" >> file-$N.tmp
 
-mv -f file-$N.tmp file-$N
+mv -f file-$N.tmp output/file-$N

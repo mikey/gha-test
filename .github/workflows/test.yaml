@@ -12,6 +12,7 @@ jobs:
     - name: Touch 1
       if: github.ref_name != 'test'
       run: ./touch 1
+      run: mkdir -p output/foo/baa
 
     - name: Archive artifacts
       if: github.ref_name != 'test'
@@ -21,7 +22,7 @@ jobs:
         path: |
           output/
 
-    - name: Get build-1
+    - name: Get artifacts
       if: github.ref_name == 'test'
       continue-on-error: true
       uses: dawidd6/action-download-artifact@v2

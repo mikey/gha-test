@@ -20,7 +20,7 @@ jobs:
       with:
         workflow: test.yml
         workflow_conclusion: success
-        branch: test
+        branch: main
         name: build-1
 
     - name: Archive artifacts

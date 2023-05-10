@@ -26,10 +26,7 @@ jobs:
       continue-on-error: true
       uses: dawidd6/action-download-artifact@v2
       with:
-        workflow: test.yml
-        workflow_conclusion: success
         branch: main
-        name: build-1
 
     - name: Touch 2
       run: ./touch 2

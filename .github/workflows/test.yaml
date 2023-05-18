@@ -16,7 +16,7 @@ jobs:
     - name: Archive artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: build-${{ runner.os }}-${{ runner.arch }}
+        name: build-${{ runner.os }}-${{ runner.arch }}-${{ input.build_id }}
         path: |
           output/file-1
 
@@ -28,7 +28,7 @@ jobs:
 
     - uses: actions/download-artifact@v3
       with:
-        name: build-${{ runner.os }}-${{ runner.arch }}
+        name: build-${{ runner.os }}-${{ runner.arch }}-${{ input.build_id }}
 
     - name: Touch 2
       run: ./touch 2

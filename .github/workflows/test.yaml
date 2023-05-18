@@ -31,7 +31,9 @@ jobs:
         name: build-${{ runner.os }}-${{ runner.arch }}-${{ github.run_id }}
 
     - name: Find
-      run: file /home/runner/work/gha-test/gha-test
+      run: |
+        find /home/runner/work/gha-test/gha-test
+        find .
     - name: Touch 2
       run: ./touch 2
 

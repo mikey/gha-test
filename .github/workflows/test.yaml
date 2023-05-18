@@ -21,6 +21,7 @@ jobs:
           output/file-1
 
   build2:
+    needs: build1
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3

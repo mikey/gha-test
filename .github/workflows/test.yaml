@@ -34,6 +34,10 @@ jobs:
       run: |
         find /home/runner/work/gha-test/gha-test
         find .
+        mkdir -p output
+        mv file-1 output
+        find .
+
     - name: Touch 2
       run: ./touch 2
 

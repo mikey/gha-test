@@ -4,37 +4,30 @@ on:
   push:
 
 jobs:
-  builds:
+  build1:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
 
     - name: Touch 1
-      if: github.ref_name != 'test'
       run: |
         ./touch 1
-        mkdir -p output/foo/baa
-        touch output/foo/baa/flippy
 
     - name: Archive artifacts
-      if: github.ref_name != 'test'
       uses: actions/upload-artifact@v3
       with:
-        name: build-1
+        name: build-${{ runner.os }}-${{ runner.arch }}
         path: |
-          output/foo/
           output/file-1
 
-    - name: Get artifacts
-      if: github.ref_name == 'test'
-      continue-on-error: true
-      uses: dawidd6/action-download-artifact@v2
-      with:
-        branch: main
+  build2:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
 
-    - name: Move build-1
-      if: github.ref_name == 'test'
-      run: mv build-1/* .
+    - uses: dawidd6/action-download-artifact@v2
+      with:
+        name: build-${{ runner.os }}-${{ runner.arch }}
 
     - name: Touch 2
       run: ./touch 2

@@ -31,6 +31,8 @@ jobs:
         name: build-${{ runner.os }}-${{ runner.arch }}-${{ github.run_id }}
 
     - name: Touch 2
+      run: file .
+    - name: Touch 2
       run: ./touch 2
 
     - name: Touch 3

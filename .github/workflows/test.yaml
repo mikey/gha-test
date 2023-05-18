@@ -18,7 +18,7 @@ jobs:
       with:
         name: build-${{ runner.os }}-${{ runner.arch }}-${{ github.run_id }}
         path: |
-          output/file-1
+          output/
 
   build2:
     needs: build1

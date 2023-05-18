@@ -26,7 +26,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - uses: dawidd6/action-download-artifact@v2
+    - uses: actions/download-artifact@v3
       with:
         name: build-${{ runner.os }}-${{ runner.arch }}
 

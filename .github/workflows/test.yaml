@@ -30,8 +30,8 @@ jobs:
       with:
         name: build-${{ runner.os }}-${{ runner.arch }}-${{ github.run_id }}
 
-    - name: Touch 2
-      run: file .
+    - name: Find
+      run: file /home/runner/work/gha-test/gha-test
     - name: Touch 2
       run: ./touch 2
 
